@@ -1,0 +1,11 @@
+{
+  "expected_id": 7,
+  "max_views": 2,
+  "min_marker_edge_px": 55.0,
+  "min_sharpness": 45.0,
+  "target": [0.50, 0.0, 0.242],
+  "camera_positions": [[0.50, -0.18, 0.54], [0.50, 0.18, 0.54]],
+  "ik_seed_positions": [-0.74, -1.33, 0.92, -0.78, -1.18, -0.81],
+  "velocity_scale": 0.15,
+  "acceleration_scale": 0.15
+}

@@ -1,0 +1,60 @@
+# ROS / colcon build outputs
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Large/generated data and model artifacts
+datasets/
+checkpoints/
+*.pt
+*.pth
+*.onnx
+*.bag
+*.db3
+*.mcap
+artifacts/
+outputs/
+
+# Editor / OS
+/.vscode/
+/.idea/
+.DS_Store
+Thumbs.db
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Local mentoring starter materials (retained locally, excluded from publication)
+/AGENTS.md
+/ACTIVEVISIONQA_CODEX_MASTER_GUIDE.txt
+/START_CODEX_PROMPT.txt
+/LEARNING_ROADMAP.md
+/PROJECT_BRIEF.md
+/PROGRESS_LOG.md
+/lessons/
+/research/RESEARCH_LOG.md
+/docs/mentoring/
+/ACTIVEVISIONQA_RESUME_COVER_LETTER_HANDOFF.txt
+/hello_environment.py
+/requirements-gpu.txt
+
+# Local assistant and account configuration
+/.agents/
+/.codex/
+/.aws/
+
+# Generated package metadata
+*.egg-info/
+core
+core.*

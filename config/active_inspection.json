@@ -1,0 +1,25 @@
+{
+  "marking_kind": "text",
+  "expected_text": "AVQ-0427",
+  "selection_policy": "next_best_view",
+  "max_views": 2,
+  "max_episode_seconds": 60.0,
+  "max_candidate_previews": 4,
+  "min_predicted_visibility": 0.95,
+  "view_visibility_weight": 4.0,
+  "view_resolution_weight": 1.0,
+  "view_duration_weight": 0.08,
+  "view_path_weight": 0.03,
+  "view_novelty_weight": 0.2,
+  "target": [0.50, 0.0, 0.242],
+  "camera_positions": [
+    [0.50, -0.18, 0.54],
+    [0.50, 0.18, 0.54],
+    [0.36, 0.0, 0.52],
+    [0.64, 0.0, 0.52],
+    [0.50, 0.0, 0.60]
+  ],
+  "ik_seed_positions": [-0.74, -1.33, 0.92, -0.78, -1.18, -0.81],
+  "velocity_scale": 0.15,
+  "acceleration_scale": 0.15
+}

@@ -1,0 +1,154 @@
+{
+  "date": "2026-11-12",
+  "scope": "Gazebo/MoveIt scenario smoke suite",
+  "matched": 5,
+  "total": 5,
+  "cases": [
+    {
+      "scenario": "occluded",
+      "policy": "fixed_view",
+      "expected": "ESCALATE",
+      "matched": true,
+      "exit_code": 3,
+      "result": {
+        "outcome": "ESCALATE",
+        "reason": "marking_not_detected",
+        "views": 1,
+        "motion_attempts": 1,
+        "elapsed_seconds": 4.520281965999857,
+        "backend": "gazebo_moveit"
+      },
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "verified_motions": 1,
+        "sampled_collision_states": 33,
+        "max_position_error_m": 0.0006225672528410156
+      }
+    },
+    {
+      "scenario": "occluded",
+      "policy": "active",
+      "expected": "ACCEPT",
+      "matched": true,
+      "exit_code": 0,
+      "result": {
+        "outcome": "ACCEPT",
+        "reason": "expected_identifier_and_quality",
+        "views": 2,
+        "motion_attempts": 2,
+        "elapsed_seconds": 7.585372412000197,
+        "backend": "gazebo_moveit"
+      },
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "verified_motions": 2,
+        "sampled_collision_states": 52,
+        "max_position_error_m": 0.0006225672482457256
+      }
+    },
+    {
+      "scenario": "wrong_id",
+      "policy": "active",
+      "expected": "REJECT",
+      "matched": true,
+      "exit_code": 0,
+      "result": {
+        "outcome": "REJECT",
+        "reason": "unexpected_identifier",
+        "views": 1,
+        "motion_attempts": 1,
+        "elapsed_seconds": 4.354871069000183,
+        "backend": "gazebo_moveit"
+      },
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "verified_motions": 1,
+        "sampled_collision_states": 33,
+        "max_position_error_m": 0.0005262168839669993
+      }
+    },
+    {
+      "scenario": "all_occluded",
+      "policy": "active",
+      "expected": "ESCALATE",
+      "matched": true,
+      "exit_code": 3,
+      "result": {
+        "outcome": "ESCALATE",
+        "reason": "marking_not_detected",
+        "views": 2,
+        "motion_attempts": 2,
+        "elapsed_seconds": 11.355108304000169,
+        "backend": "gazebo_moveit"
+      },
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "verified_motions": 2,
+        "sampled_collision_states": 84,
+        "max_position_error_m": 0.0006785318624580189
+      }
+    },
+    {
+      "scenario": "clear",
+      "policy": "unreachable",
+      "expected": "ESCALATE",
+      "matched": true,
+      "exit_code": 3,
+      "result": {
+        "outcome": "ESCALATE",
+        "reason": "plan_validation: RuntimeError: collision_aware_ik_error_-31",
+        "views": 0,
+        "motion_attempts": 1,
+        "elapsed_seconds": 1.0352217420004308,
+        "backend": "gazebo_moveit"
+      },
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "verified_motions": 0,
+        "sampled_collision_states": 0,
+        "max_position_error_m": null
+      }
+    }
+  ],
+  "interactive_gui_repeats": [
+    {
+      "result": {
+        "outcome": "ACCEPT",
+        "reason": "expected_identifier_and_quality",
+        "views": 2,
+        "motion_attempts": 2,
+        "elapsed_seconds": 10.826596480000262,
+        "backend": "gazebo_moveit"
+      },
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "verified_motions": 2,
+        "sampled_collision_states": 84,
+        "max_position_error_m": 0.0004959926216119476
+      }
+    },
+    {
+      "result": {
+        "outcome": "ACCEPT",
+        "reason": "expected_identifier_and_quality",
+        "views": 2,
+        "motion_attempts": 2,
+        "elapsed_seconds": 13.229067768000277,
+        "backend": "gazebo_moveit"
+      },
+      "audit": {
+        "passed": true,
+        "errors": [],
+        "verified_motions": 2,
+        "sampled_collision_states": 102,
+        "max_position_error_m": 0.0007667532288849441
+      }
+    }
+  ]
+}

@@ -1,0 +1,696 @@
+{
+  "date": "2026-11-13",
+  "scope": "Known static box geometry, finite five-view pool, synthetic text; simulator engineering checks, not held-out generalization, hardware safety or industrial OCR evidence.",
+  "controller": {
+    "type": "model_based_next_best_view",
+    "learned_view_policy": false,
+    "pytorch_used": false,
+    "vlm_used": false,
+    "simulator": "Gazebo Harmonic",
+    "planner": "MoveIt 2",
+    "robot": "UR5e",
+    "inspection": "OpenCV HOG/RBF SVM",
+    "unselected_candidate_outcomes": "unknown"
+  },
+  "automated_tests": {
+    "command": "bash scripts/test.sh",
+    "passed": 125,
+    "elapsed_seconds": 3.82,
+    "type": "unit/interface",
+    "build": "colcon package build passed"
+  },
+  "comparison_command": "bash scripts/active_vision.sh --ocr-model outputs/ocr-model-final-01 --output outputs/active-vision-comparison-01",
+  "comparison": {
+    "scope": "predeclared known-box active-vision smoke comparison; not a generalization or safety claim",
+    "complete": true,
+    "matched": 9,
+    "total": 9,
+    "fresh_world_per_policy": true,
+    "matching_initial_states": true,
+    "cases": [
+      {
+        "scenario": "all_occluded",
+        "policy": "fixed_view",
+        "expected": "ESCALATE",
+        "expected_views": 1,
+        "exit_code": 3,
+        "matched": true,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "insufficient_text_contrast",
+          "views": 1,
+          "motion_attempts": 1,
+          "elapsed_seconds": 4.297785925002245,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 1,
+          "sampled_collision_states": 33,
+          "max_position_error_m": 0.0005404745303930284
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 0
+        },
+        "episode": {
+          "selected_views": [],
+          "selection_reasons": [],
+          "motion_previews": 0,
+          "rejected_previews": 0,
+          "successful_preview_planning_wall_seconds": 0,
+          "executed_planned_duration_s": 3.125112852,
+          "executed_planned_joint_path_length_rad": 2.029672323591667,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 3.445098444674214e-12,
+            "shoulder_lift_joint": -1.5699999999985494,
+            "elbow_joint": -2.1937684194121657e-12,
+            "wrist_1_joint": -1.5699999999928052,
+            "wrist_2_joint": -3.719491731339261e-12,
+            "wrist_3_joint": -6.424579283465138e-12
+          }
+        },
+        "run_directory": "runs/all_occluded_fixed_view"
+      },
+      {
+        "scenario": "all_occluded",
+        "policy": "sequence",
+        "expected": "ESCALATE",
+        "expected_views": 2,
+        "exit_code": 3,
+        "matched": true,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "insufficient_text_contrast",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 11.547461053000006,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 84,
+          "max_position_error_m": 0.0006728037901139006
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 0
+        },
+        "episode": {
+          "selected_views": [],
+          "selection_reasons": [],
+          "motion_previews": 0,
+          "rejected_previews": 0,
+          "successful_preview_planning_wall_seconds": 0,
+          "executed_planned_duration_s": 8.052538186,
+          "executed_planned_joint_path_length_rad": 4.488493116162767,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 4.061835582466932e-15,
+            "shoulder_lift_joint": -1.5699999999999947,
+            "elbow_joint": 3.6095759563704625e-15,
+            "wrist_1_joint": -1.569999999999975,
+            "wrist_2_joint": -1.350176992090542e-14,
+            "wrist_3_joint": -7.574701743642468e-15
+          }
+        },
+        "run_directory": "runs/all_occluded_sequence"
+      },
+      {
+        "scenario": "all_occluded",
+        "policy": "next_best_view",
+        "expected": "ACCEPT",
+        "expected_views": 2,
+        "exit_code": 0,
+        "matched": true,
+        "result": {
+          "outcome": "ACCEPT",
+          "reason": "expected_text_and_quality",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 9.902888083001017,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 52,
+          "max_position_error_m": 0.000891758209223888
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 1
+        },
+        "episode": {
+          "selected_views": [
+            "view_5"
+          ],
+          "selection_reasons": [
+            "visibility_and_motion_cost"
+          ],
+          "motion_previews": 3,
+          "rejected_previews": 1,
+          "successful_preview_planning_wall_seconds": 1.3705640740045055,
+          "executed_planned_duration_s": 4.908574336999999,
+          "executed_planned_joint_path_length_rad": 2.9035989116168066,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 5.170907950761135e-13,
+            "shoulder_lift_joint": -1.5699999999997793,
+            "elbow_joint": -3.240005814576602e-13,
+            "wrist_1_joint": -1.5699999999989063,
+            "wrist_2_joint": -5.660329965316457e-13,
+            "wrist_3_joint": -9.642948835989673e-13
+          }
+        },
+        "run_directory": "runs/all_occluded_next_best_view"
+      },
+      {
+        "scenario": "top_occluded",
+        "policy": "fixed_view",
+        "expected": "ESCALATE",
+        "expected_views": 1,
+        "exit_code": 3,
+        "matched": true,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "insufficient_text_contrast",
+          "views": 1,
+          "motion_attempts": 1,
+          "elapsed_seconds": 4.436176658000477,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 1,
+          "sampled_collision_states": 33,
+          "max_position_error_m": 0.0007321976411638867
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 0
+        },
+        "episode": {
+          "selected_views": [],
+          "selection_reasons": [],
+          "motion_previews": 0,
+          "rejected_previews": 0,
+          "successful_preview_planning_wall_seconds": 0,
+          "executed_planned_duration_s": 3.12586972,
+          "executed_planned_joint_path_length_rad": 2.030799912378929,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 8.89240125891651e-12,
+            "shoulder_lift_joint": -1.5699999999962617,
+            "elbow_joint": -5.672305975247544e-12,
+            "wrist_1_joint": -1.569999999981455,
+            "wrist_2_joint": -9.586230166563624e-12,
+            "wrist_3_joint": -1.6582962094834344e-11
+          }
+        },
+        "run_directory": "runs/top_occluded_fixed_view"
+      },
+      {
+        "scenario": "top_occluded",
+        "policy": "sequence",
+        "expected": "ESCALATE",
+        "expected_views": 2,
+        "exit_code": 3,
+        "matched": true,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "insufficient_text_contrast",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 11.510106336001627,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 84,
+          "max_position_error_m": 0.00032546283108699745
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 0
+        },
+        "episode": {
+          "selected_views": [],
+          "selection_reasons": [],
+          "motion_previews": 0,
+          "rejected_previews": 0,
+          "successful_preview_planning_wall_seconds": 0,
+          "executed_planned_duration_s": 8.043718442,
+          "executed_planned_joint_path_length_rad": 4.4856327117184485,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 2.5503157741051267e-11,
+            "shoulder_lift_joint": -1.5699999999892849,
+            "elbow_joint": -1.6279607304818686e-11,
+            "wrist_1_joint": -1.5699999999468432,
+            "wrist_2_joint": -2.7475983084023756e-11,
+            "wrist_3_joint": -4.755947081139176e-11
+          }
+        },
+        "run_directory": "runs/top_occluded_sequence"
+      },
+      {
+        "scenario": "top_occluded",
+        "policy": "next_best_view",
+        "expected": "ACCEPT",
+        "expected_views": 2,
+        "exit_code": 0,
+        "matched": true,
+        "result": {
+          "outcome": "ACCEPT",
+          "reason": "expected_text_and_quality",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 12.791100484999333,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 82,
+          "max_position_error_m": 0.0008420389148209932
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 1
+        },
+        "episode": {
+          "selected_views": [
+            "view_3"
+          ],
+          "selection_reasons": [
+            "visibility_and_motion_cost"
+          ],
+          "motion_previews": 2,
+          "rejected_previews": 1,
+          "successful_preview_planning_wall_seconds": 0.7599297779997869,
+          "executed_planned_duration_s": 7.856006851,
+          "executed_planned_joint_path_length_rad": 4.500314723938109,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 3.8870839415913466e-11,
+            "shoulder_lift_joint": -1.5699999999836702,
+            "elbow_joint": -2.4815943677936375e-11,
+            "wrist_1_joint": -1.5699999999189893,
+            "wrist_2_joint": -4.187295267393111e-11,
+            "wrist_3_joint": -7.248814328651901e-11
+          }
+        },
+        "run_directory": "runs/top_occluded_next_best_view"
+      },
+      {
+        "scenario": "covered",
+        "policy": "fixed_view",
+        "expected": "ESCALATE",
+        "expected_views": 1,
+        "exit_code": 3,
+        "matched": true,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "insufficient_text_contrast",
+          "views": 1,
+          "motion_attempts": 1,
+          "elapsed_seconds": 4.360202356001537,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 1,
+          "sampled_collision_states": 33,
+          "max_position_error_m": 0.00034908147380817537
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 0
+        },
+        "episode": {
+          "selected_views": [],
+          "selection_reasons": [],
+          "motion_previews": 0,
+          "rejected_previews": 0,
+          "successful_preview_planning_wall_seconds": 0,
+          "executed_planned_duration_s": 3.127149122,
+          "executed_planned_joint_path_length_rad": 2.0309505866346784,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 2.7905297402662265e-12,
+            "shoulder_lift_joint": -1.5699999999988243,
+            "elbow_joint": -1.775773567386745e-12,
+            "wrist_1_joint": -1.5699999999941692,
+            "wrist_2_joint": -3.0145227751635026e-12,
+            "wrist_3_joint": -5.203909218733269e-12
+          }
+        },
+        "run_directory": "runs/covered_fixed_view"
+      },
+      {
+        "scenario": "covered",
+        "policy": "sequence",
+        "expected": "ESCALATE",
+        "expected_views": 2,
+        "exit_code": 3,
+        "matched": true,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "insufficient_text_contrast",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 11.115651185999013,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 84,
+          "max_position_error_m": 0.0007237002922471387
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 0
+        },
+        "episode": {
+          "selected_views": [],
+          "selection_reasons": [],
+          "motion_previews": 0,
+          "rejected_previews": 0,
+          "successful_preview_planning_wall_seconds": 0,
+          "executed_planned_duration_s": 8.05137803,
+          "executed_planned_joint_path_length_rad": 4.486523878424646,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 8.756978015999625e-13,
+            "shoulder_lift_joint": -1.5699999999996286,
+            "elbow_joint": -5.529998508780671e-13,
+            "wrist_1_joint": -1.5699999999981589,
+            "wrist_2_joint": -9.522521856628336e-13,
+            "wrist_3_joint": -1.6330418535727976e-12
+          }
+        },
+        "run_directory": "runs/covered_sequence"
+      },
+      {
+        "scenario": "covered",
+        "policy": "next_best_view",
+        "expected": "ESCALATE",
+        "expected_views": 1,
+        "exit_code": 3,
+        "matched": true,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "no_feasible_informative_view",
+          "views": 1,
+          "motion_attempts": 1,
+          "elapsed_seconds": 4.78184485300153,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 1,
+          "sampled_collision_states": 33,
+          "max_position_error_m": 0.0006319954515262579
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 1
+        },
+        "episode": {
+          "selected_views": [
+            null
+          ],
+          "selection_reasons": [
+            "no_feasible_informative_view"
+          ],
+          "motion_previews": 0,
+          "rejected_previews": 0,
+          "successful_preview_planning_wall_seconds": 0,
+          "executed_planned_duration_s": 3.127477328,
+          "executed_planned_joint_path_length_rad": 2.0306194736726026,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 8.111059570047995e-18,
+            "shoulder_lift_joint": -1.5699999999999954,
+            "elbow_joint": 6.198204607847923e-15,
+            "wrist_1_joint": -1.5699999999999825,
+            "wrist_2_joint": -9.13591876272532e-15,
+            "wrist_3_joint": -1.512382546075589e-17
+          }
+        },
+        "run_directory": "runs/covered_next_best_view"
+      }
+    ]
+  },
+  "sequence_regression_command": "AVQA_ROS_DOMAIN_ID=76 bash scripts/validate_simulation.sh --config config/text_inspection.json --ocr-model outputs/ocr-model-final-01 --include-unreachable --output outputs/sequence-regression-after-active-01",
+  "sequence_regression": {
+    "scope": "Gazebo/MoveIt scenario smoke suite",
+    "cases": [
+      {
+        "scenario": "occluded",
+        "policy": "fixed_view",
+        "expected": "ESCALATE",
+        "matched": true,
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 1,
+          "sampled_collision_states": 33,
+          "max_position_error_m": 0.0008619370698960407
+        },
+        "exit_code": 3,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "insufficient_text_contrast",
+          "views": 1,
+          "motion_attempts": 1,
+          "elapsed_seconds": 4.4142238179993,
+          "backend": "gazebo_moveit"
+        },
+        "run_directory": "occluded_fixed_view"
+      },
+      {
+        "scenario": "occluded",
+        "policy": "active",
+        "expected": "ACCEPT",
+        "matched": true,
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 52,
+          "max_position_error_m": 0.0008619370681703359
+        },
+        "exit_code": 0,
+        "result": {
+          "outcome": "ACCEPT",
+          "reason": "expected_text_and_quality",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 7.960412461001397,
+          "backend": "gazebo_moveit"
+        },
+        "run_directory": "occluded_active"
+      },
+      {
+        "scenario": "wrong_id",
+        "policy": "active",
+        "expected": "REJECT",
+        "matched": true,
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 1,
+          "sampled_collision_states": 33,
+          "max_position_error_m": 0.0006423335411151909
+        },
+        "exit_code": 0,
+        "result": {
+          "outcome": "REJECT",
+          "reason": "unexpected_text",
+          "views": 1,
+          "motion_attempts": 1,
+          "elapsed_seconds": 4.467062965999503,
+          "backend": "gazebo_moveit"
+        },
+        "run_directory": "wrong_id_active"
+      },
+      {
+        "scenario": "all_occluded",
+        "policy": "active",
+        "expected": "ESCALATE",
+        "matched": true,
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 84,
+          "max_position_error_m": 0.0006232290460651729
+        },
+        "exit_code": 3,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "insufficient_text_contrast",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 11.231563559998904,
+          "backend": "gazebo_moveit"
+        },
+        "run_directory": "all_occluded_active"
+      },
+      {
+        "scenario": "clear",
+        "policy": "unreachable",
+        "expected": "ESCALATE",
+        "matched": true,
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 0,
+          "sampled_collision_states": 0,
+          "max_position_error_m": null
+        },
+        "exit_code": 3,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "plan_validation: RuntimeError: collision_aware_ik_error_-31",
+          "views": 0,
+          "motion_attempts": 1,
+          "elapsed_seconds": 1.0200028830004157,
+          "backend": "gazebo_moveit"
+        },
+        "run_directory": "clear_unreachable"
+      }
+    ],
+    "matched": 5,
+    "total": 5
+  },
+  "gui_command": "AVQA_ACTIVE_ROS_DOMAIN_ID=77 bash scripts/active_vision.sh --ocr-model outputs/ocr-model-final-01 --scenarios top_occluded --policies next_best_view --gui --output outputs/active-vision-gui-validation-01",
+  "gui": {
+    "scope": "predeclared known-box active-vision smoke comparison; not a generalization or safety claim",
+    "complete": true,
+    "matched": 1,
+    "total": 1,
+    "fresh_world_per_policy": true,
+    "matching_initial_states": true,
+    "cases": [
+      {
+        "scenario": "top_occluded",
+        "policy": "next_best_view",
+        "expected": "ACCEPT",
+        "expected_views": 2,
+        "exit_code": 0,
+        "matched": true,
+        "result": {
+          "outcome": "ACCEPT",
+          "reason": "expected_text_and_quality",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 12.37037141700057,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 82,
+          "max_position_error_m": 0.0004279884195270799
+        },
+        "decision_audit": {
+          "passed": true,
+          "errors": [],
+          "selection_events": 1
+        },
+        "episode": {
+          "selected_views": [
+            "view_3"
+          ],
+          "selection_reasons": [
+            "visibility_and_motion_cost"
+          ],
+          "motion_previews": 2,
+          "rejected_previews": 1,
+          "successful_preview_planning_wall_seconds": 0.8150553970008332,
+          "executed_planned_duration_s": 7.855223504,
+          "executed_planned_joint_path_length_rad": 4.498450846243328,
+          "initial_joint_state": {
+            "shoulder_pan_joint": 2.3619572858822864e-16,
+            "shoulder_lift_joint": -1.5699999999999954,
+            "elbow_joint": 6.0525540482040495e-15,
+            "wrist_1_joint": -1.5699999999999825,
+            "wrist_2_joint": -9.381563966045203e-15,
+            "wrist_3_joint": -4.4046693411454717e-16
+          }
+        },
+        "run_directory": "runs/top_occluded_next_best_view"
+      }
+    ]
+  },
+  "images": {
+    "overhead_before.png": {
+      "source": "outputs/active-vision-comparison-01/runs/all_occluded_next_best_view/view_01.png",
+      "sha256": "8c15cecf266b12f2946785cddc56dfe2bc103853434d98a19013d5e654a29cd3"
+    },
+    "overhead_after.png": {
+      "source": "outputs/active-vision-comparison-01/runs/all_occluded_next_best_view/view_02.png",
+      "sha256": "c1448d768a1538bf88066e7d7094d86c46d0c2debaa3f2576e09d047eaeca1da"
+    },
+    "overhead_after_roi.png": {
+      "source": "outputs/active-vision-comparison-01/runs/all_occluded_next_best_view/view_02_roi.png",
+      "sha256": "7a849f24d3040489f7dc8d6fc2a69bccd85d68273d995c7946489c31ee5b288e"
+    },
+    "side_before.png": {
+      "source": "outputs/active-vision-comparison-01/runs/top_occluded_next_best_view/view_01.png",
+      "sha256": "8e8cf8d648f6f91459eba86e0e538aa06dd85d2e47560e792feaff4011aa93ea"
+    },
+    "side_after.png": {
+      "source": "outputs/active-vision-comparison-01/runs/top_occluded_next_best_view/view_02.png",
+      "sha256": "0fe8170e25eec74ab48c35241026216e8fd5860e4891830288a43442a4f3fe27"
+    },
+    "side_after_roi.png": {
+      "source": "outputs/active-vision-comparison-01/runs/top_occluded_next_best_view/view_02_roi.png",
+      "sha256": "123a6a28afe99b74a50ddb0580f7fd44127f7af9f2bb795ea7125ca6ebd0f44b"
+    }
+  },
+  "unchanged_ocr_integrity": {
+    "artifact_sha256:svm.yml": true,
+    "artifact_sha256:references.npy": true,
+    "source_sha256:ocr.py": true,
+    "source_sha256:ocr_data.py": true,
+    "source_sha256:ocr_training.py": true
+  },
+  "implementation_sha256": {
+    "activevisionqa/view_selection.py": "400d484b3c02bc38ae5ceb9be02c6114b57e4437ec1d01de36171ac78bf4a374",
+    "activevisionqa/policy.py": "14d3b2e01a5621771f2d887b8d40de940802cf2bc3eb1ecf52a8b7b80264a938",
+    "activevisionqa/ros_backend.py": "1c5228db3e531cd850d1013e9767845fc5929d5a5343632c3a67566f5e12cb07",
+    "activevisionqa/config.py": "2e896aa31994a465252db913e6839dbc8bf2ba050e4ae10f15cd611bf01ede7f",
+    "activevisionqa/models.py": "013287ffba570a9525817d1eb638a4b2e804bce83835f394be332a6783bf1e5d",
+    "activevisionqa/assets.py": "b36cc6464f30e99578af85468c5d9ea03dff1684d9c0deb33bdd7131a64486e7",
+    "activevisionqa/report.py": "504ad193e7d0eb8453ecb9dc78095f208a7899eb720495b254f5e6422047cd7c",
+    "activevisionqa/active_benchmark.py": "75d6d672edc34e4f8a35d0ac8e3b63a1e2c738eee05f0132cb41eaae38642298",
+    "config/active_inspection.json": "361ec55837eeb512003a71bbda26ee06de1982703eaf96b3dcdcf3eabe86a77c"
+  },
+  "limitations": [
+    "Constructed scenes intentionally block the original front/back sequence; stronger alternate fixed sequences and held-out randomized scenes are not evaluated.",
+    "OMPL motion planning remains stochastic; timings are single runs and exclude simulator startup/readiness.",
+    "Visibility uses known world boxes and a registered label footprint; unknown geometry and robot self-occlusion are not reconstructed.",
+    "Engineering utility is heuristic, not learned/calibrated information gain.",
+    "Previewed plans are never executed directly; chosen goals are freshly planned, executed and measured.",
+    "Sampled collision checks are not continuous collision or hardware safety certification.",
+    "GUI initialization and robot image/motion evidence verified; visual appearance was not reviewed by a human."
+  ]
+}

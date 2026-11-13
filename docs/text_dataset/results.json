@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-13",
+  "scope": "synthetic text data collection; no OCR performance claim",
+  "automated_tests_passed": 85,
+  "model_trained": false,
+  "dataset_audit": {
+    "passed": true,
+    "errors": [],
+    "samples": 12,
+    "samples_by_split": {
+      "train": 4,
+      "validation": 4,
+      "test": 4
+    },
+    "captured_cases": 6,
+    "planned_cases": 6,
+    "all_planned_views_captured": true,
+    "readability_reviewed": 0,
+    "scope": "artifact integrity; not OCR performance or real-world validation"
+  },
+  "collection": {
+    "selected_cases": 6,
+    "statuses": [
+      {
+        "case_id": "train_p000_clear",
+        "exit_code": 0,
+        "images": 2,
+        "complete": true
+      },
+      {
+        "case_id": "train_p000_occluded",
+        "exit_code": 0,
+        "images": 2,
+        "complete": true
+      },
+      {
+        "case_id": "validation_p000_clear",
+        "exit_code": 0,
+        "images": 2,
+        "complete": true
+      },
+      {
+        "case_id": "validation_p000_occluded",
+        "exit_code": 0,
+        "images": 2,
+        "complete": true
+      },
+      {
+        "case_id": "test_p000_clear",
+        "exit_code": 0,
+        "images": 2,
+        "complete": true
+      },
+      {
+        "case_id": "test_p000_occluded",
+        "exit_code": 0,
+        "images": 2,
+        "complete": true
+      }
+    ],
+    "complete": true,
+    "full_plan_selected": true,
+    "model_trained": false
+  },
+  "gui_preview_audit": {
+    "passed": true,
+    "errors": [],
+    "samples": 2,
+    "samples_by_split": {
+      "train": 2,
+      "validation": 0,
+      "test": 0
+    },
+    "captured_cases": 1,
+    "planned_cases": 6,
+    "all_planned_views_captured": false,
+    "readability_reviewed": 0,
+    "scope": "artifact integrity; not OCR performance or real-world validation"
+  },
+  "marker_regression": {
+    "matched": 5,
+    "total": 5,
+    "cases": [
+      {
+        "scenario": "occluded",
+        "policy": "fixed_view",
+        "expected": "ESCALATE",
+        "matched": true,
+        "exit_code": 3,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "marking_not_detected",
+          "views": 1,
+          "motion_attempts": 1,
+          "elapsed_seconds": 4.234016051999788,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 1,
+          "sampled_collision_states": 33,
+          "max_position_error_m": 0.00018860621713934675
+        }
+      },
+      {
+        "scenario": "occluded",
+        "policy": "active",
+        "expected": "ACCEPT",
+        "matched": true,
+        "exit_code": 0,
+        "result": {
+          "outcome": "ACCEPT",
+          "reason": "expected_identifier_and_quality",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 7.68220364499939,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 53,
+          "max_position_error_m": 0.0006054871197462553
+        }
+      },
+      {
+        "scenario": "wrong_id",
+        "policy": "active",
+        "expected": "REJECT",
+        "matched": true,
+        "exit_code": 0,
+        "result": {
+          "outcome": "REJECT",
+          "reason": "unexpected_identifier",
+          "views": 1,
+          "motion_attempts": 1,
+          "elapsed_seconds": 4.573934277999797,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 1,
+          "sampled_collision_states": 33,
+          "max_position_error_m": 0.000450536412439427
+        }
+      },
+      {
+        "scenario": "all_occluded",
+        "policy": "active",
+        "expected": "ESCALATE",
+        "matched": true,
+        "exit_code": 3,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "marking_not_detected",
+          "views": 2,
+          "motion_attempts": 2,
+          "elapsed_seconds": 11.26537446600014,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 2,
+          "sampled_collision_states": 84,
+          "max_position_error_m": 0.0004861033303597194
+        }
+      },
+      {
+        "scenario": "clear",
+        "policy": "unreachable",
+        "expected": "ESCALATE",
+        "matched": true,
+        "exit_code": 3,
+        "result": {
+          "outcome": "ESCALATE",
+          "reason": "plan_validation: RuntimeError: collision_aware_ik_error_-31",
+          "views": 0,
+          "motion_attempts": 1,
+          "elapsed_seconds": 1.0155272419997345,
+          "backend": "gazebo_moveit"
+        },
+        "audit": {
+          "passed": true,
+          "errors": [],
+          "verified_motions": 0,
+          "sampled_collision_states": 0,
+          "max_position_error_m": null
+        }
+      }
+    ]
+  }
+}
